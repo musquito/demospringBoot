@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Spring Boot Exemple</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <div th:if="${not #lists.isEmpty(branchs)}">
+        <h2>Branch List</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>View</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <tr th:each="branch : ${branchs}">
+                <td th:text="${branch.id}"><a href="/branch/${branch.id}">Id</a></td>
+                <td th:text="${branch.name}">Name</td>
+                <td><a th:href="${ '/branch/' + branch.id}">View</a></td>
+                <td><a th:href="${'/branch/edit/' + branch.id}">Edit</a></td>
+                <td><a th:href="${'/branch/delete/' + branch.id}">Delete</a></td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+
+</body>
+</html>

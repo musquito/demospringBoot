@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Spring Boot Exemple</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <div th:if="${not #lists.isEmpty(agents)}">
+        <h2>Agents List</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Id</th>
+                <th>UserName</th>
+                <th>Name</th>
+                <th>LastName</th>
+                <th>BrachName</th>
+                <th>View</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <tr th:each="agent : ${agents}">
+                <td th:text="${agent.agent.id}"><a href="/agent/${agent.agent.id}">Id</a></td>
+                <td th:text="${agent.agent.user}">UserName</td>
+                <td th:text="${agent.agent.fname}">Name</td>
+                <td th:text="${agent.agent.lname}">LastName</td>
+                <td th:text="${agent.branch.name}">BranchName</td>
+                <td><a th:href="${ '/agent/' + agent.agent.id}">View</a></td>
+                <td><a th:href="${'/agent/edit/' + agent.agent.id}">Edit</a></td>
+                <td><a th:href="${'/agent/delete/' +agent.agent.id}">Delete</a></td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+
+</body>
+</html>
